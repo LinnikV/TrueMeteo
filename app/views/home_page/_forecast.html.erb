@@ -1,0 +1,361 @@
+<% unless @convert_daily.nil?  %>
+  <h4 class="text-center fw-normal mt-5">Current Weather</h4>
+  <div class="container">
+    <div class="row ">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row card-body">
+              <h5 class="card-title">
+                <div class="text p-2"><%= @current[:time] %></div>
+              </h5>
+              <div class="col-md-7">
+                <%= image_tag "image_#{@current[:weather_code]}.png" ,class:"img-fluid" %>
+              </div>
+              <div class="col-md-5">
+                <div data-bs-toggle="tooltip" title="Air temperature">
+                  <h1 class="text"><%= @current[:temperature_2m] %>°<small class="fs-4 text-muted">C</small></h1>
+                </div>
+                <h5 class="card-text"><small class="text-muted">Real Feel <%= @current[:apparent_temperature] %>°C</small></h5>
+                <div class="mt-3" data-bs-toggle="tooltip" title="Wind direction">
+                <h6 class="card-text"><small class="text-muted">Wind direction:</small></h6>
+                  <%= image_tag "arrow_black.png" ,class:"card-img", style: "transform: rotate(#{@current[:wind_direction]}deg);" %>
+                </div>
+              </div>
+              <div class="middle">
+                <div class="c-text"><%= @current[:weather_text] %></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card-body">
+              <ol class="list-group list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-medium">Relative Humidity</div>
+                  </div>
+                  <span class="text-center fw-normal "><%= @current[:relative_humidity] %>%</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-medium">Precipitation</div>
+                  </div>
+                  <span class="text-center fw-normal"><%= @current[:precipitation] %>mm</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-medium">Cloud Cover</div>
+                  </div>
+                  <span class="text-center fw-normal"><%= @current[:cloud_cover] %>%</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-medium">Pressure</div>
+                  </div>
+                  <span class="text-center fw-normal"><%= @current[:pressure_msl] %> hPa</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-medium">Wind Speed</div>
+                  </div>
+                  <span class="text-center fw-normal"><%= @current[:wind_speed] %>m/s</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-medium">Wind Gusts</div>
+                  </div>
+                  <span class="text-center fw-normal"><%= @current[:wind_gusts] %>m/s</span>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <div class="container">
+    <h4 class="text-center fw-normal mt-5">Daily Weather Forecast</h4>
+    <ul class="nav nav-tabs justify-content-center" id="forecastTabs" role="tablist">
+      <li class="nav-item">
+        <%= link_to "3 Days", weather_path(day: "3", latitude: params[:latitude], longitude: params[:longitude], name: params["name"], timezone: params[:timezone], country: params[:country]), class:"nav-link #{"active" if params[:day] == "3"} link-dark", controller: "home_page", action: "weather" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "7 Days", weather_path(day: "7", latitude: params[:latitude], longitude: params[:longitude], name: params["name"], timezone: params[:timezone], country: params[:country]), class: "nav-link #{"active" if params[:day] == "7"} link-dark", controller: "home_page", action: "weather" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "14 Days", weather_path(day: "14", latitude: params[:latitude], longitude: params[:longitude], name: params["name"], timezone: params[:timezone], country: params[:country]), class: "nav-link #{"active" if params[:day] == "14"} link-dark", controller: "home_page", action: "weather" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "16 Days", weather_path(day: "16", latitude: params[:latitude], longitude: params[:longitude], name: params["name"], timezone: params[:timezone], country: params[:country]), class: "nav-link #{"active" if params[:day] == "16"} link-dark", controller: "home_page", action: "weather" %>
+      </li>
+    </ul>
+  </div>
+
+  <% @convert_daily.each_slice(3).with_index do |value, index| %>
+    <div class="row row-cols-3">
+      <% value.each do |row| %>
+        <div class="card">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row card-body">
+                <h5 class="card-title">
+                  <div class="nav nav-tabs justify-content-start" data-bs-toggle="tooltip" title="Hourly weather for this day"> 
+                    <a class="nav-link link-info" data-bs-toggle="modal" data-bs-target="#hourlyModal<%= row[:date].split(" ").first %>" href="#" ><%= row[:date] %></a>
+                  </div>
+                </h5>
+                <div class="col-md-6">
+                  <%= image_tag "image_#{row[:weather_code]}.png" ,class:"img-fluid" %>
+                </div>
+                <div class="col-md-6">
+                  <div data-bs-toggle="tooltip" title="Air temperature">
+                    <h4 class="text"><%= row[:temperature_2m_min] %> <small class="fs-5 text-muted">to</small> <%= row[:temperature_2m_max] %>°<small class="fs-4 text-muted">C</small></h4>
+                  </div>
+                  <h6 class="card-text"><small class="text-muted">Real Feel <%= row[:apparent_temperature_min] %> to <%= row[:apparent_temperature_max] %>°C</small></h6>
+                  <div data-bs-toggle="tooltip" title="The sum of solar radiation on a given day in Megajoules">
+                    <h6 class="card-text"><small class="text-muted">Daylight Duration <%= (row[:daylight_duration]/60/60).ceil(2) %> h </small></h6>
+                  </div>
+                  <div class="mt-3" data-bs-toggle="tooltip" title="Wind direction">
+                    <h6 class="card-text"><small class="text-muted">Wind direction:</small></h6>
+                    <%= image_tag "arrow_black.png" ,class:"img", style: "transform: rotate(#{row[:wind_direction_10m_dominant]}deg);" %>
+                  </div>
+                </div>
+                <div class="middle">
+                  <div class="c-text"><%= row[:weather_text] %></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row card-body">
+                <div class="row col-md-6">
+                  <div class="col-md-5">
+                    <%= image_tag "wind.png" ,class:"img" %>
+                  </div>
+                  <div class="col-md-7">
+                    <div data-bs-toggle="tooltip" title="Wind Speed">
+                      <%= row[:wind_speed_10m_max] %> m/s
+                    </div>
+                    <hr>
+                    <div data-bs-toggle="tooltip" title="Wind Gusts">
+                      <%= row[:wind_gusts_10m_max] %> m/s
+                    </div>
+                  </div>
+                </div>
+                <div class="row col-md-6">
+                  <div class="col-md-6">
+                    <%= image_tag "sun.png" ,class:"img" %>
+                  </div>
+                  <div class="col-md-6">
+                    <div data-bs-toggle="tooltip" title="Sunset">
+                      <%= row[:sunset] %>
+                    </div>
+                    <hr>
+                    <div data-bs-toggle="tooltip" title="Sunrise">
+                      <%= row[:sunrise] %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="row card-body">
+                <div class="row col-md-6">
+                  <div class="col-md-6">
+                    <%= image_tag "rain.png" ,class:"img" %>
+                  </div>
+                  <div class="col-md-6">
+                    <div data-bs-toggle="tooltip" title="Probability of precipitation">
+                      <%= row[:precipitation_probability_max] || 0 %>%
+                    </div>
+                    <hr>
+                    <div data-bs-toggle="tooltip" title="Sum of daily precipitation">
+                      <%= row[:precipitation_sum] %>mm
+                    </div>
+                  </div>
+                </div>
+                <div class="row col-md-6">
+                  <div class="col-md-5">
+                    <%= image_tag "sun_rad.png" ,class:"img" %>
+                  </div>
+                  <div class="col-md-7">
+                    <div data-bs-toggle="tooltip" title="Ultraviolet Inde">
+                      <%= row[:uv_index_max] %>
+                    </div>
+                    <hr>
+                    <div data-bs-toggle="tooltip" title="The sum of solar radiation on a given day in Megajoules">
+                      <%= row[:shortwave_radiation_sum] %>MJ/m²
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal" id="hourlyModal<%= row[:date].split(" ").first %>" tabindex="-1" focus-"false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Hourly Weather Forecast <%= row[:date] %></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <table class="table table-success">
+                    <thead>
+                      <tr class="align-middle">
+                        <th scope="col"></th>
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <th scope="col"><%= hourly_hash[:time] %></th>
+                        <% end %>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="align-middle">
+                        <td></td>
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="<%= hourly_hash[:weather_text] %>">
+                              <%= image_tag "image_#{hourly_hash[:weather_code]}.png" ,class:"img-sm" %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <td rowspan="2">
+                          <div data-bs-toggle="tooltip" title="Air temperature and apparent temperature.">
+                            <%= image_tag "temp.png" ,class:"img" %>
+                          </div>
+                        </td>
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Air temperature">
+                              <%= hourly_hash[:temperature_2m] %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Apparent temperature">
+                              <%= hourly_hash[:apparent_temperature] %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <td rowspan="3">
+                          <div data-bs-toggle="tooltip" title="Maximum wind speed and gusts">
+                            <%= image_tag "wind.png" ,class:"img" %>
+                          </div>
+                        </td>
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Wind direction">
+                              <%= image_tag "arrow_black.png" ,class:"img-sm", style: "transform: rotate(#{hourly_hash[:wind_direction_10m]}deg);" %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Wind speed">
+                              <%= hourly_hash[:wind_speed_10m] %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Wind gusts">
+                              <%= hourly_hash[:wind_gusts_10m] %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <td rowspan="2">
+                          <div data-bs-toggle="tooltip" title="Probability of precipitation and total precipitation">
+                            <%= image_tag "rain.png" ,class:"img" %>
+                          </div>
+                        </td>
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Precipitation Probability">
+                              <%= hourly_hash[:precipitation_probability] %>%
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Precipitation">
+                              <%= hourly_hash[:precipitation] %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <td rowspan="2">
+                          <div data-bs-toggle="tooltip" title="Atmospheric air pressure and viewing distance">
+                            <%= image_tag "pressure.png" ,class:"img" %>
+                          </div>
+                        </td>
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Pressure">
+                              <%= hourly_hash[:pressure_msl] %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Visibility">
+                              <%= (hourly_hash[:visibility]/1000).ceil(3) %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <td rowspan="2">
+                          <div data-bs-toggle="tooltip" title="Relative humidity and dew point temperature">
+                            <%= image_tag "humidity.png" ,class:"img" %>
+                          </div>
+                        </td>
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Relative humidity">
+                              <%= hourly_hash[:relative_humidity_2m] %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                      <tr class="align-middle">
+                        <% row[:hourly_forecast].each do |hourly_hash| %>
+                          <td>
+                            <div data-bs-toggle="tooltip" title="Dew point temperature">
+                              <%= hourly_hash[:dew_point_2m] %>
+                            </div>
+                          </td>
+                        <% end %>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

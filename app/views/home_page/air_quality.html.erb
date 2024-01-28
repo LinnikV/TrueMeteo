@@ -1,0 +1,11 @@
+<div class="container mt-5">
+  <%= form_with url: air_quality_path, method: :get, class: "d-flex"  do |form| %>
+    <%= form.search_field :latitude, class: "form-control me-2", placeholder: "Latitude:" %>
+    <%= form.search_field :longitude, class: "form-control me-2", placeholder: "Longitude:" %>
+    <% time_zone = ["America/Anchorage","America/Los_Angeles","America/Denver","America/Chicago","America/New_York","America/Sao_Paulo","Europe/London","Europe/Berlin","Europe/Kiev","Europe/Moscow","Africa/Cairo","Asia/Bangkok","Asia/Singapore","Asia/Tokyo","Australia/Sydney","Pacific/Auckland"] %>
+    <%= form.select :timezone, time_zone.map {|el| el }, {}, class:"form-select" %>
+    <%= form.submit "Search", class:"btn btn-outline-secondary btn-lg" %>
+  <% end %>
+</div>
+
+<%= render partial: "quality" %>

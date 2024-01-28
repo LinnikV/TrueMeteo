@@ -1,0 +1,25 @@
+<% unless @geo.nil?  %>
+  <div class="list">
+    <div class= "list-group" >
+      <% @geo.each do |row| %>
+        <li class="list-group-item list-group-item-action">
+          <div class='row'>
+            <div class='col-sm-8'>
+              <%= link_to row[:value],
+                weather_path(latitude: row[:latitude], longitude: row[:longitude], day: "3", name: row[:value], timezone: row[:timezone], country: row[:country]),
+                method: :get,
+                data: {turbo: false},
+                controller: "home_page",
+                action: "weather"
+              %>
+            </div>
+            <div class='col-sm-4'> <%= row[:country] %> </div>
+          </div>
+          <div class='row'>
+            <div class='col-sm'> <%= row[:timezone] %> </div>
+          </div>
+        </li>
+      <% end %>
+    </div>
+  </div>
+<% end %>

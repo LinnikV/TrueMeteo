@@ -1,0 +1,251 @@
+<% unless @current_air.nil?  %>
+  <h4 class="text-center fw-normal mt-5">Current Air Qaulity</h4>
+	<div class="container">
+		<div class="row ">
+			<div class="card">
+				<div class="row">
+					<div class="col-md-6">
+						<h5 class="card-title">
+							<div class="text p-2"><%= @current_air[:time] %></div>
+						</h5>
+						<div class="card-body">
+							<div class="row p-2 border ">
+								<div class="col-md-4 text-center">
+								<div class="fw-medium">Air Quality Index</div>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: <%= @current_air[:european_aqi] %>%; background-color: <%= @current_air[:color_index]%>;" aria-valuenow="<%= @current_air[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:european_aqi] %></small></div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><%= @current_air[:index_status] %></div>
+								</div>
+							</div>
+							<div class="row p-2 border ">
+								<h6 class="card-text mt-2"><small class="text-muted"><%= @current_air[:index_desc] %></small></h6>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="card-body">
+							<div class="row p-2 border ">
+								<div class="col-md-4 text-center">
+								<div class="fw-medium">PM<small>10</small>:</div>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: <%= @current_air[:aqi_pm10] %>%; background-color: <%= @current_air[:color_index_aqi_pm10]%>;" aria-valuenow="<%= @current_air[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:aqi_pm10] %></small></div>
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:pm10] %> μg/m³</small></div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><%= @current_air[:index_pm10] %></div>
+								</div>
+							</div>
+
+							<div class="row p-2 border ">
+								<div class="col-md-4 text-center">
+								<div class="fw-medium">PM<small>2.5</small>:</div>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: <%= @current_air[:aqi_pm2_5] %>%; background-color: <%= @current_air[:color_index_aqi_pm2_5]%>;" aria-valuenow="<%= @current_air[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:aqi_pm2_5] %></small></div>
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:pm2_5] %> μg/m³</small></div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><%= @current_air[:index_pm2_5] %></div>
+								</div>
+							</div>
+
+							<div class="row p-2 border ">
+								<div class="col-md-4 text-center">
+								<div class="fw-medium">NO<small>2</small>:</div>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: <%= @current_air[:aqi_nitrogen_dioxide] %>%; background-color: <%= @current_air[:color_index_aqi_nitrogen_dioxide]%>;" aria-valuenow="<%= @current_air[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:aqi_nitrogen_dioxide] %></small></div>
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:nitrogen_dioxide] %> μg/m³</small></div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><%= @current_air[:index_aqi_nitrogen_dioxide] %></div>
+								</div>
+							</div>
+
+							<div class="row p-2 border ">
+								<div class="col-md-4 text-center">
+								<div class="fw-medium">SO<small>2</small>:</div>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: <%= @current_air[:aqi_sulphur_dioxide] %>%; background-color: <%= @current_air[:color_index_aqi_sulphur_dioxide]%>;" aria-valuenow="<%= @current_air[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:aqi_sulphur_dioxide] %></small></div>
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:sulphur_dioxide] %> μg/m³</small></div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><%= @current_air[:index_aqi_sulphur_dioxide] %></div>
+								</div>
+							</div>
+
+							<div class="row p-2 border ">
+								<div class="col-md-4 text-center">
+								<div class="fw-medium">O<small>3</small>:</div>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: <%= @current_air[:aqi_ozone] %>%; background-color: <%= @current_air[:color_index_aqi_ozone]%>;" aria-valuenow="<%= @current_air[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:aqi_ozone] %></small></div>
+									<div class="fw-medium"><small class="text-muted"><%= @current_air[:ozone] %> μg/m³</small></div>
+								</div>
+								<div class="col-md-4 text-center">
+									<div class="fw-medium"><%= @current_air[:index_aqi_ozone] %></div>
+								</div>
+							</div>
+								
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<h4 class="text-center fw-normal mt-5">Daily Air Quality Forecast</h4>
+		<ul class="nav nav-tabs justify-content-center" id="forecastTabs" role="tablist">
+			<li class="nav-item">
+				<%= link_to "3 Days", air_quality_path(day: "3", latitude: params[:latitude], longitude: params[:longitude], name: params["name"], timezone: params[:timezone], country: params[:country]), class:"nav-link #{"active" if params[:day] == "3"} link-dark", controller: "home_page", action: "air_quality" %>
+			</li>
+			<li class="nav-item">
+				<%= link_to "5 Days", air_quality_path(day: "5", latitude: params[:latitude], longitude: params[:longitude], name: params["name"], timezone: params[:timezone], country: params[:country]), class: "nav-link #{"active" if params[:day] == "5"} link-dark", controller: "home_page", action: "air_quality" %>
+			</li>
+		</ul>
+	</div>
+
+	<div>
+		<% @daily_air.each_slice(3).with_index do |value, index| %>
+			<div class="row row-cols-3">
+				<% value.each do |row| %>
+					<div class="card">
+						<div class="row">
+							<div class="col-md-12">
+								<h5 class="card-title p-2">
+									<div class="nav nav-tabs justify-content-start"> 
+										<div class="nav-link link-info" ><%= row[:day] %></div>
+									</div>
+								</h5>
+								<div class="card-body">
+									<div class="row p-2 border ">
+										<div class="col-md-4 text-center">
+										<div class="fw-medium">Air Quality</div>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: <%= row[:european_aqi] %>%; background-color: <%= row[:colot_index_aqi]%>;" aria-valuenow="<%= row[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><small class="text-muted"><%= row[:european_aqi] %></small></div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><%= row[:index_aqi] %></div>
+										</div>
+									</div>
+
+									<div class="row p-2 border ">
+										<div class="col-md-4 text-center">
+										<div class="fw-medium">PM<small>10</small>:</div>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: <%= row[:aqi_pm10] %>%; background-color: <%= row[:color_index_aqi_pm10]%>;" aria-valuenow="<%= row[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><small class="text-muted"><%= row[:aqi_pm10] %></small></div>
+											<div class="fw-medium"><small class="text-muted">≈<%= row[:pm10] %> μg/m³</small></div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><%= row[:index_pm10] %></div>
+										</div>
+									</div>
+
+									<div class="row p-2 border ">
+										<div class="col-md-4 text-center">
+										<div class="fw-medium">PM<small>2.5</small>:</div>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: <%= row[:aqi_pm2_5] %>%; background-color: <%= row[:color_index_aqi_pm2_5]%>;" aria-valuenow="<%= row[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><small class="text-muted"><%= row[:aqi_pm2_5] %></small></div>
+											<div class="fw-medium"><small class="text-muted">≈<%= row[:pm2_5] %> μg/m³</small></div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><%= row[:index_pm2_5] %></div>
+										</div>
+									</div>
+
+									<div class="row p-2 border ">
+										<div class="col-md-4 text-center">
+										<div class="fw-medium">NO<small>2</small>:</div>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: <%= row[:aqi_nitrogen_dioxide] %>%; background-color: <%= row[:color_index_aqi_nitrogen_dioxide]%>;" aria-valuenow="<%= row[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><small class="text-muted"><%= row[:aqi_nitrogen_dioxide] %></small></div>
+											<div class="fw-medium"><small class="text-muted">≈<%= row[:nitrogen_dioxide] %> μg/m³</small></div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><%= row[:index_aqi_nitrogen_dioxide] %></div>
+										</div>
+									</div>
+
+									<div class="row p-2 border ">
+										<div class="col-md-4 text-center">
+										<div class="fw-medium">SO<small>2</small>:</div>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: <%= row[:aqi_sulphur_dioxide] %>%; background-color: <%= row[:color_index_aqi_sulphur_dioxide]%>;" aria-valuenow="<%= @current_air[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><small class="text-muted"><%= row[:aqi_sulphur_dioxide] %></small></div>
+											<div class="fw-medium"><small class="text-muted">≈<%= row[:sulphur_dioxide] %> μg/m³</small></div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><%= row[:index_aqi_sulphur_dioxide] %></div>
+										</div>
+									</div>
+
+									<div class="row p-2 border ">
+										<div class="col-md-4 text-center">
+										<div class="fw-medium">O<small>3</small>:</div>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: <%= @current_air[:aqi_ozone] %>%; background-color: <%= @current_air[:color_index_aqi_ozone]%>;" aria-valuenow="<%= @current_air[:european_aqi] %>" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><small class="text-muted"><%= row[:aqi_ozone] %></small></div>
+											<div class="fw-medium"><small class="text-muted">≈<%= row[:ozone] %> μg/m³</small></div>
+										</div>
+										<div class="col-md-4 text-center">
+											<div class="fw-medium"><%= row[:index_aqi_ozone] %></div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+<% end %>
+
+

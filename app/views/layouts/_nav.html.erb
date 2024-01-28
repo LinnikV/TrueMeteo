@@ -1,0 +1,48 @@
+<div class="sticky-top">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <%= image_tag "temp.png" ,class:"d-inline-block align-text-top", style: "width: 40px; height: 40px;" %>
+        TrueMeteo      
+      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Weather", weather_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Air Quality", air_quality_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Documentation</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav me-5">
+          <li class="nav-item">
+            <% unless session[:country].nil? || session[:name].nil? %>
+              <div class="nav-link active"><%= session[:country] %>/<%= session[:name] %></div>
+            <% end %>
+          </li>
+        </ul>
+        <div class="d-flex" >
+          <%= form_with url: search_path, method: :post, class: "d-flex" ,data: {turbo_frame: "search", turbo_action: "advance", controller: "search", action: "input->search#submit"} do |form| %>
+            <%= form.search_field :name , class: "form-control me-2", placeholder: "Search City"%>
+            <%#= form.submit "Search", class:"btn btn-outline-secondary" %>
+            <%# autocomplete: :off %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <%= turbo_frame_tag "search" do %>
+    <%= render partial: "home_page/search" %>
+  <% end %>
+</div>
+
+
+
+
+
