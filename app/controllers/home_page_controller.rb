@@ -1,5 +1,6 @@
 class HomePageController < ApplicationController
   def index
+    @news = News.all.where(publish: true).order(date: :desc).limit(3)
   end
 
   def search
@@ -23,7 +24,6 @@ class HomePageController < ApplicationController
       @convert_daily = data_forecast.convert_daily_forecast
       @current = data_forecast.convert_current_forecast
     end
-    pp params["step"]
   end
 
   def air_quality

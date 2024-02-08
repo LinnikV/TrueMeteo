@@ -1,3 +1,5 @@
+<%= provide :page_title, "Air Quality" %>
+
 <div class="container mt-5">
   <%= form_with url: air_quality_path, method: :get, class: "d-flex"  do |form| %>
     <%= form.search_field :latitude, class: "form-control me-2", placeholder: "Latitude:" %>

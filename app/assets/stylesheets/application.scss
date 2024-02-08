@@ -13,7 +13,7 @@ body {
 }
 
 
-  .card-img {
+  .card-imge {
     width: 50%;
     height: auto;
     opacity: 0.8;
@@ -101,4 +101,11 @@ body {
 
  .carousel-control-next-icon {
     background-image: url('/assets/right.png');
+  }
+
+
+
+  .carousel-item {
+    max-height: 300px;
+    justify-content: center;
   }

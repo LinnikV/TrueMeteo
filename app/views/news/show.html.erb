@@ -1,0 +1,30 @@
+<%= provide :page_title, "#{@news.title}" %>
+<div class="card mt-2">
+  <div class="card-header bg-transparent">
+    <div class="row">
+      <div class="col-md-1">
+        <%= link_to(:back) do %>
+        <%= image_tag "left.png" ,class:"img-sm" %>
+        <% end %>
+      </div>
+      <div class="col-md-11">
+        <h4 class="card-title"><%= @news.title %></h4>
+        <p class="text-muted"><%= @news.header %></p>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <p>
+        <%== @news.body %>
+      </p>
+    </div>
+  </div>
+  <div class="card-footer bg-transparent">
+    <small class="text-muted"><%= @news.date.strftime("%e %B %Y") %></small>
+    <br>
+    <%= link_to "Source: #{@news.source} ", @news.source , class:"text-muted"%>
+  </div>
+</div>
+
+

@@ -10,21 +10,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_26_143635) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_28_151008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "news", force: :cascade do |t|
-    t.string "title"
-    t.text "header"
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
     t.text "body"
-    t.string "date"
-    t.string "datetime"
-    t.string "source"
-    t.string "image"
-    t.boolean "publish"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "news", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.date "date"
+    t.string "source", null: false
+    t.text "header", null: false
+    t.string "image"
+    t.boolean "publish"
+    t.bigint "admin_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_news_on_admin_id"
+    t.index ["header"], name: "index_news_on_header", unique: true
+    t.index ["source"], name: "index_news_on_source", unique: true
+    t.index ["title"], name: "index_news_on_title", unique: true
+  end
+
+  add_foreign_key "news", "admins"
 end

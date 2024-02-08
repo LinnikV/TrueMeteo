@@ -1,0 +1,44 @@
+<%= provide :page_title, "Home" %>
+
+<div>
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= image_tag "weather.jpg" ,class:"d-block" %>
+        <div class="carousel-caption p-2 bg-body text-secondary">
+          <h3>Accurate Weather Forecasts for Any Location</h3>
+          <p>Seamless integration of high-resolution weather models with up 16 days forecast</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "air_quality.jpg" ,class:"d-block" %>
+        <div class="carousel-caption p-2 bg-body text-secondary">
+          <h3>Air Quality Forecasts</h3>
+          <p>Pollutants and pollen forecast in 11 km resolution</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "news.jpg" ,class:"d-block" %>
+        <div class="carousel-caption p-2 bg-body text-secondary">
+          <h3>Climate News</h3>
+          <p>Hear from journalists all over the world sharing their insights about covering climate change</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<h4 class="text-center fw-normal mt-5">Last Climate News</h4>
+<%= render partial: "news/news" %>

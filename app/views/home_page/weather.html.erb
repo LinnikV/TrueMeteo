@@ -1,3 +1,5 @@
+<%= provide :page_title, "Weather" %>
+
 <div class="container mt-5">
   <%= form_with url: weather_path, method: :get, class: "d-flex"  do |form| %>
     <%= form.search_field :latitude, class: "form-control me-2", placeholder: "Latitude:" %>
