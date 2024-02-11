@@ -1,4 +1,8 @@
 class News < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
+
   belongs_to :admin
 
   validates :title, presence: true, uniqueness: true

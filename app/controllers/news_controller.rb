@@ -2,11 +2,11 @@ class NewsController < InheritedResources::Base
   #require_relative '../../lib/assets/news/parser'
 
   def index
-    @news = News.all.where(publish: true).order(date: :desc)
+    @pagy, @news = pagy(News.all.where(publish: true).order(date: :desc))
   end
 
   def show
-    @news = News.where(publish: true).find( params[:id])
+    @news = News.friendly.where(publish: true).find( params[:id])
   end
 
   private
