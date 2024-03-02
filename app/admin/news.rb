@@ -9,6 +9,10 @@ ActiveAdmin.register News do
       flash[:notice] = name
       redirect_to admin_news_index_path
     end
+
+    def find_resource
+      scoped_collection.friendly.find(params[:id])
+    end
   end
 
   action_item :create do
