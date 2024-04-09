@@ -18,26 +18,26 @@ Weather data provided from the open-meteo.com project API.
 'devise', 'activeadmin', 'nokogiri', 'pagy', 'friendly_id', 'bootstrap'.
 ## 
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/1.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/1.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/2.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/2.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/3.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/3.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/4.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/4.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/5.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/5.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/6.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/6.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/7.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/7.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/8.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/8.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/9.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/9.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/10.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/10.png)
 
-![](https://github.com/LinnikV/TrueMeteo/tree/main/Photo/11.png)
+![](https://github.com/LinnikV/TrueMeteo/blob/main/Photo/11.png)
 
 ## 
